@@ -35,15 +35,19 @@ namespace iLexStudio.IntercomServices.Models
             [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
             public int ObjectID { get; set; }
 
-           
-            public int StreetID { get; set; }
+            [ScaffoldColumn(false)]
+            public Dictionaries.Street Street { get; set; }
+
             public string CallerName { get; set; }
-            public int TicketType { get; set; }
+
+            [ScaffoldColumn(false)]
+            public Dictionaries.TicketType TicketType { get; set; }
+
             public string Description { get; set; }
-            public int HomeID { get; set; }
+            public int BuildingID { get; set; }
             public string Phone { get; set; }
             public string Email { get; set; }
-            public int Status { get; set; }
+            public TicketStatus Status { get; set; }
             public string StatusReason { get; set; }
         }
     }

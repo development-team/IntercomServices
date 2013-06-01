@@ -188,6 +188,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Dictionaries.cs" />
     <Compile Include="Models\IntercomContext.cs" />
     <Compile Include="Models\TicketModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
