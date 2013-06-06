@@ -44,6 +44,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -188,9 +190,22 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\Dictionaries.cs" />
     <Compile Include="Models\IntercomContext.cs" />
-    <Compile Include="Models\TicketModels.cs" />
+    <Compile Include="Models\IntercomServices.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IntercomServices.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IntercomServices.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IntercomServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IntercomServices.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IntercomServices.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +265,23 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <EntityDeploy Include="Models\IntercomServices.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IntercomServices.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\IntercomServices.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IntercomServices.edmx</DependentUpon>
+      <LastGenOutput>IntercomServices.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\IntercomServices.edmx.diagram">
+      <DependentUpon>IntercomServices.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\IntercomServices.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IntercomServices.edmx</DependentUpon>
+      <LastGenOutput>IntercomServices.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -310,6 +342,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
