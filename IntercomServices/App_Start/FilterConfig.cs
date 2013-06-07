@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace IntercomServices
+namespace iLexStudio.IntercomServices.App_Start
 {
     public class FilterConfig
     {
