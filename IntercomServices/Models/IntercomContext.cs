@@ -10,8 +10,13 @@ namespace iLexStudio.IntercomServices.Models
     /// context of database
     /// </summary>
     public class UsersContext : DbContext
+       
     {
      
+
+        public UsersContext() :base("DefaultConnection") {
+
+        }
 
         /// <summary>
         /// User profiles
