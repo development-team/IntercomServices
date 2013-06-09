@@ -9,12 +9,12 @@ namespace iLexStudio.IntercomServices.Models
     /// <summary>
     /// context of database
     /// </summary>
-    public class UsersContext : DbContext
+    public class IntercomContext : DbContext
        
     {
      
 
-        public UsersContext() :base("DefaultConnection") {
+        public IntercomContext() : base ("DefaultConnection") {
 
         }
 
@@ -22,5 +22,6 @@ namespace iLexStudio.IntercomServices.Models
         /// User profiles
         /// </summary>
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
     }
 }

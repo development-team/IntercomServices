@@ -13,10 +13,10 @@ namespace iLexStudio.IntercomServices.Models
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int ObjectId { get; set; }
+        public int UserId { get; set; }
         public string UserName { get; set; }
     }
-
+   
     public class RegisterExternalLoginModel
     {
         [Required]
