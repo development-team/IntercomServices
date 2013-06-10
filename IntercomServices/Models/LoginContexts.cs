@@ -9,19 +9,20 @@ namespace iLexStudio.IntercomServices.Models
     /// <summary>
     /// context of database
     /// </summary>
-    public class IntercomContext : DbContext
+    public class LoginContexts : DbContext
        
     {
      
 
-        public IntercomContext() : base ("DefaultConnection") {
+        public LoginContexts() : base ("DefaultConnection") {
 
         }
 
+        
         /// <summary>
         /// User profiles
         /// </summary>
         public DbSet<UserProfile> UserProfiles { get; set; }
-        public DbSet<Ticket> Tickets { get; set; }
+    
     }
 }

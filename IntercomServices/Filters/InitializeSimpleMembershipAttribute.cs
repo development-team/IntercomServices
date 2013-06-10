@@ -26,11 +26,11 @@ namespace iLexStudio.IntercomServices.Filters
         {
             public SimpleMembershipInitializer()
             {
-                Database.SetInitializer<IntercomContext>(null);
+                Database.SetInitializer<LoginContexts>(null);
 
                 try
                 {
-                    using (var context = new IntercomContext())
+                    using (var context = new LoginContexts())
                     {
                         if (!context.Database.Exists())
                         {

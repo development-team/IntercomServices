@@ -191,8 +191,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\TicketModels.cs" />
-    <Compile Include="Models\IntercomContext.cs" />
+    <Compile Include="Models\LoginContexts.cs" />
     <Compile Include="Models\IntercomServices.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -208,6 +207,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IntercomServices.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\TicketModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +279,7 @@
     <Content Include="Models\IntercomServices.edmx.diagram">
       <DependentUpon>IntercomServices.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\IntercomServices.edmx.sql" />
     <Content Include="Models\IntercomServices.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>IntercomServices.edmx</DependentUpon>

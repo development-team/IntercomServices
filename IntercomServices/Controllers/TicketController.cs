@@ -11,7 +11,7 @@ namespace iLexStudio.IntercomServices.Controllers
 {
     public class TicketController : Controller
     {
-        private IntercomContext _db = new IntercomContext();
+        private LoginContexts _db = new LoginContexts();
         //
         // GET: /Ticket/
 
@@ -24,11 +24,17 @@ namespace iLexStudio.IntercomServices.Controllers
         [HttpPost]
         public ActionResult Create(CreateModel model, string returnUrl)
         {
-            if (!WebSecurity.IsAuthenticated)            
-                ModelState.AddModelError("", "Please Log in first");
-            _db.Tickets.Add(new Ticket { Assignee = "", BuildingID = model.BuildingID, CallerName = model.CallerName, Description = model.Description, Email = model.Email, Phone = model.Phone, Status = "", StatusReason = ""});
-            _db.SaveChanges();
-            return View(model);
+
+            using (var db = new IntercomContext())
+            {
+
+                if (!WebSecurity.IsAuthenticated)
+                    ModelState.AddModelError("", "Please Log in first");
+                db.Tickets.AddObject(new Ticket { Assignee = 1, BuildingID = model.BuildingID, CallerName = model.CallerName, Description = model.Description, Email = model.Email, Phone = model.Phone });
+                db.SaveChanges();
+                return View(model);
+            }
+           
         }
 
     }

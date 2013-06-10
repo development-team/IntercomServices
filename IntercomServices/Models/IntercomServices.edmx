@@ -4,11 +4,101 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="IntercomServices.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
-        <EntityContainer Name="IntercomServicesTargetContainer" >
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="iLexStudio.IntercomServices.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="iLexStudioIntercomServicesStoreContainer">
+    <EntitySet Name="Tickets" EntityType="iLexStudio.IntercomServices.Store.Tickets" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BaseDictionaries" EntityType="iLexStudio.IntercomServices.Store.BaseDictionaries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BaseDictionaries_Street" EntityType="iLexStudio.IntercomServices.Store.BaseDictionaries_Street" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BaseDictionaries_TicketType" EntityType="iLexStudio.IntercomServices.Store.BaseDictionaries_TicketType" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ParentEntry" Association="iLexStudio.IntercomServices.Store.ParentEntry">
+      <End Role="BaseDictionary" EntitySet="BaseDictionaries" />
+      <End Role="BaseDictionary1" EntitySet="BaseDictionaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Street_inherits_BaseDictionary" Association="iLexStudio.IntercomServices.Store.FK_Street_inherits_BaseDictionary">
+      <End Role="BaseDictionary" EntitySet="BaseDictionaries" />
+      <End Role="Street" EntitySet="BaseDictionaries_Street" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TicketType_inherits_BaseDictionary" Association="iLexStudio.IntercomServices.Store.FK_TicketType_inherits_BaseDictionary">
+      <End Role="BaseDictionary" EntitySet="BaseDictionaries" />
+      <End Role="TicketType" EntitySet="BaseDictionaries_TicketType" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Tickets">
+    <Key>
+      <PropertyRef Name="ObjectID" />
+    </Key>
+    <Property Name="ObjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CallerName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BuildingID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StatusReason" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="Assignee" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BaseDictionaries">
+    <Key>
+      <PropertyRef Name="ObjectID" />
+    </Key>
+    <Property Name="ObjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ParentEntry_BaseDictionary_ObjectID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BaseDictionaries_Street">
+    <Key>
+      <PropertyRef Name="ObjectID" />
+    </Key>
+    <Property Name="ObjectID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BaseDictionaries_TicketType">
+    <Key>
+      <PropertyRef Name="ObjectID" />
+    </Key>
+    <Property Name="ObjectID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="ParentEntry">
+    <End Role="BaseDictionary" Type="iLexStudio.IntercomServices.Store.BaseDictionaries" Multiplicity="*" />
+    <End Role="BaseDictionary1" Type="iLexStudio.IntercomServices.Store.BaseDictionaries" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="BaseDictionary1">
+        <PropertyRef Name="ObjectID" />
+      </Principal>
+      <Dependent Role="BaseDictionary">
+        <PropertyRef Name="ParentEntry_BaseDictionary_ObjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Street_inherits_BaseDictionary">
+    <End Role="BaseDictionary" Type="iLexStudio.IntercomServices.Store.BaseDictionaries" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Street" Type="iLexStudio.IntercomServices.Store.BaseDictionaries_Street" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BaseDictionary">
+        <PropertyRef Name="ObjectID" />
+      </Principal>
+      <Dependent Role="Street">
+        <PropertyRef Name="ObjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TicketType_inherits_BaseDictionary">
+    <End Role="BaseDictionary" Type="iLexStudio.IntercomServices.Store.BaseDictionaries" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TicketType" Type="iLexStudio.IntercomServices.Store.BaseDictionaries_TicketType" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BaseDictionary">
+        <PropertyRef Name="ObjectID" />
+      </Principal>
+      <Dependent Role="TicketType">
+        <PropertyRef Name="ObjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="iLexStudio.IntercomServices" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -61,13 +151,52 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
-        <Alias Key="Model" Value="IntercomServices" />
-        <Alias Key="Target" Value="IntercomServices.Store" />
-        <EntityContainerMapping CdmEntityContainer="IntercomContext" StorageEntityContainer="IntercomServicesTargetContainer">
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="iLexStudioIntercomServicesStoreContainer" CdmEntityContainer="IntercomContext">
+    <EntitySetMapping Name="Tickets">
+      <EntityTypeMapping TypeName="IsTypeOf(iLexStudio.IntercomServices.Ticket)">
+        <MappingFragment StoreEntitySet="Tickets">
+          <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+          <ScalarProperty Name="CallerName" ColumnName="CallerName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="StatusReason" ColumnName="StatusReason" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Assignee" ColumnName="Assignee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BaseDictionaries">
+      <EntityTypeMapping TypeName="IsTypeOf(iLexStudio.IntercomServices.BaseDictionary)">
+        <MappingFragment StoreEntitySet="BaseDictionaries">
+          <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(iLexStudio.IntercomServices.Street)">
+        <MappingFragment StoreEntitySet="BaseDictionaries_Street">
+          <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(iLexStudio.IntercomServices.TicketType)">
+        <MappingFragment StoreEntitySet="BaseDictionaries_TicketType">
+          <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ParentEntry" TypeName="iLexStudio.IntercomServices.ParentEntry" StoreEntitySet="BaseDictionaries">
+      <EndProperty Name="BaseDictionary1">
+        <ScalarProperty Name="ObjectID" ColumnName="ParentEntry_BaseDictionary_ObjectID" />
+      </EndProperty>
+      <EndProperty Name="BaseDictionary">
+        <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -80,7 +209,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

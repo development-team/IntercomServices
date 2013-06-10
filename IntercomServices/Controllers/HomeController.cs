@@ -13,7 +13,7 @@ namespace IntercomServices.Controllers
      [InitializeSimpleMembership]
     public class HomeController : Controller
     {
-         private IntercomContext _db = new IntercomContext();
+         private LoginContexts _db = new LoginContexts();
          public ActionResult Index()
          {
              ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
@@ -34,7 +34,7 @@ namespace IntercomServices.Controllers
                  case "Admin":
                      return View(_db.UserProfiles.ToList());
                  case "Operator":
-                     return View(_db.Tickets.ToList());
+                     return View(_db.UserProfiles.ToList());
                  default:
                      return View();
              }
