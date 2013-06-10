@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="iLexStudio.IntercomServices" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="IntercomContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Tickets" EntityType="iLexStudio.IntercomServices.Ticket" />
+    <EntitySet Name="BaseDictionaries" EntityType="iLexStudio.IntercomServices.BaseDictionary" />
+    <AssociationSet Name="ParentEntry" Association="iLexStudio.IntercomServices.ParentEntry">
+      <End Role="BaseDictionary" EntitySet="BaseDictionaries" />
+      <End Role="BaseDictionary1" EntitySet="BaseDictionaries" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Ticket">
+    <Key>
+      <PropertyRef Name="ObjectID" />
+    </Key>
+    <Property Type="Int32" Name="ObjectID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="CallerName" Nullable="false" />
+    <Property Type="String" Name="Description" Nullable="false" />
+    <Property Type="String" Name="BuildingID" Nullable="false" />
+    <Property Type="String" Name="Phone" Nullable="false" />
+    <Property Type="String" Name="Email" Nullable="false" />
+    <Property Type="String" Name="StatusReason" Nullable="false" />
+    <Property Type="iLexStudio.IntercomServices.TicketStatus" Name="Status" Nullable="false" />
+    <Property Type="Int32" Name="Assignee" Nullable="false" />
+  </EntityType>
+  <EnumType Name="TicketStatus" IsFlags="true">
+    <Member Name="New" Value="1" />
+    <Member Name="Checked" Value="2" />
+    <Member Name="Assigned" Value="4" />
+    <Member Name="Completed" Value="8" />
+    <Member Name="Rejected" Value="16" />
+    <Member Name="Closed" Value="32" />
+  </EnumType>
+  <EntityType Name="BaseDictionary">
+    <Key>
+      <PropertyRef Name="ObjectID" />
+    </Key>
+    <Property Type="Int32" Name="ObjectID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Value" Nullable="false" />
+    <NavigationProperty Name="ParentDictionary" Relationship="iLexStudio.IntercomServices.ParentEntry" FromRole="BaseDictionary1" ToRole="BaseDictionary" />
+    <Property Type="String" Name="Description" Nullable="false" />
+  </EntityType>
+  <Association Name="ParentEntry">
+    <End Type="iLexStudio.IntercomServices.BaseDictionary" Role="BaseDictionary" Multiplicity="1" />
+    <End Type="iLexStudio.IntercomServices.BaseDictionary" Role="BaseDictionary1" Multiplicity="1" />
+  </Association>
+  <EntityType Name="Street" BaseType="iLexStudio.IntercomServices.BaseDictionary" />
+  <EntityType Name="TicketType" BaseType="iLexStudio.IntercomServices.BaseDictionary" />
+</Schema>

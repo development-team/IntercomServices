@@ -1,0 +1,39 @@
+﻿@model iLexStudio.IntercomServices.Models.CreateModel
+@{
+    ViewBag.Title = "Create a new ticket";
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Please fill this boxes.</h2>
+</hgroup>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Creating form</legend>
+        <ol>
+             <li>
+                @Html.LabelFor(m => m.CallerName)
+                @Html.TextBoxFor(m => m.CallerName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Description)
+                @Html.TextBoxFor(m => m.Description)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.BuildingID)
+                @Html.TextBoxFor(m => m.BuildingID)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Phone)
+                @Html.TextBoxFor(m => m.Phone)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email)
+            </li>
+        </ol>
+        <input type="submit" value="Create ticket" />
+    </fieldset>
+}
