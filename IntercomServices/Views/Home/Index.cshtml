@@ -19,8 +19,55 @@
         </div>
     </section>
 }
-@if (ViewBag.Button)
-{
-    @Html.ActionLink("Create ticket", "Create", "Ticket")
+@{
+    
+    if (ViewBag.Authenticated){
+        string role = ViewBag.UserRole.ToString();
+        switch(role)
+        {
+            case "User":
+            
+                @Html.ActionLink("Create ticket", "Create", "Ticket");
+                break;
+                
+            case "Admin":
+                <tr>
+                    @foreach( var user in Model)
+                    {
+                        <td>
+                            @user.UserName;  
+                        </td>
+                    }
+
+                </tr>
+                break;
+            case "Engineer":
+                break;                                        
+            case "Operator":
+                <tr>
+                @foreach (var ticket in Model)
+                {
+                    <td>
+                        @ticket.CallerName;
+                    </td>                 
+                    <td>
+                        @ticket.Description;
+                    </td>   
+                    <td>
+                        @ticket.Phone;
+                    </td>
+                    <td>
+                        @ticket.Status;
+                    </td>
+                }      
+                </tr>            
+                break;
+            default:
+                
+                break;
+        }
+    }
 }
+
+
 
