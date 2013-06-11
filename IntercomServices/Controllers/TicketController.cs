@@ -14,12 +14,12 @@ namespace iLexStudio.IntercomServices.Controllers
 {
     public class TicketController : Controller
     {
-       
+
         //
         // GET: /Ticket/
 
         public ActionResult Create(string returnUrl)
-        {           
+        {
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -33,10 +33,10 @@ namespace iLexStudio.IntercomServices.Controllers
 
                 if (!WebSecurity.IsAuthenticated)
                     ModelState.AddModelError("", "Please Log in first");
-                db.Tickets.Add(new Ticket { Assignee = 1, BuildingID = model.BuildingID, CallerName = model.CallerName, Description = model.Description, Email = model.Email, Phone = model.Phone,Status = TicketStatus.New,StatusReason = "New ticket"});
+                db.Tickets.Add(new Ticket { Assignee = 1, BuildingID = model.BuildingID, CallerName = model.CallerName, Description = model.Description, Email = model.Email, Phone = model.Phone, Status = TicketStatus.New, StatusReason = "New ticket" });
                 try
                 {
-                   
+
                     db.SaveChanges();
                 }
                 catch (DbEntityValidationException dbEx)
@@ -51,9 +51,10 @@ namespace iLexStudio.IntercomServices.Controllers
                 }
                 return RedirectToAction("Index", "Home");
             }
-           
+
         }
-        public ActionResult Edit(int ObjectID)
+        [HttpGet]
+        public ActionResult Edit(EditModel model, int ObjectID)
         {
             if (WebSecurity.IsAuthenticated && Roles.GetRolesForUser(WebSecurity.CurrentUserName).Contains("Operator"))
             {
@@ -67,14 +68,40 @@ namespace iLexStudio.IntercomServices.Controllers
                     }
                     else
                     {
-                        ViewBag.Ticket = ticket;
+                        model.ObjectID = ticket.ObjectID;
+                        model.CallerName = ticket.CallerName;
+                        model.BuildingID = ticket.BuildingID;
+                        model.Phone = ticket.Phone;
+                        model.Email = ticket.Email;
+                        model.StatusReason = ticket.StatusReason;
+                        model.Assignee = ticket.Assignee;
+                        model.Status = ticket.Status;
+                        model.Description = ticket.Description;
                     }
                 }
-                return View();
-                
+                return View(model);
+
             }
-            
-            return View();
+
+            return RedirectToAction("Index", "Home");
+        }
+        [HttpPost]
+        public ActionResult Edit(EditModel model)
+        {
+            using (var db = new IntercomContext())
+            {
+                Ticket EditedTicket = db.Tickets.Find(model.ObjectID);
+                EditedTicket.Assignee = model.Assignee;
+                EditedTicket.BuildingID = model.BuildingID;
+                EditedTicket.CallerName = model.CallerName;
+                EditedTicket.Description = model.Description;
+                EditedTicket.Email = model.Email;
+                EditedTicket.Phone = model.Phone;
+                EditedTicket.Status = model.Status;
+                EditedTicket.StatusReason = model.StatusReason;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index","Home");
         }
 
     }

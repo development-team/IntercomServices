@@ -55,16 +55,19 @@
         {
             <tr>
             <td>
-                @ticket.CallerName;
+                @ticket.CallerName
             </td>                 
             <td>
-                @ticket.Description;
+                @ticket.Description
             </td>   
             <td>
-                @ticket.Phone;
+                @ticket.Phone
             </td>
             <td>
-                @ticket.Status;
+                @ticket.Status
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Ticket", new {ObjectID = (int)ticket.ObjectID},null)
             </td>
             </tr> 
         }
