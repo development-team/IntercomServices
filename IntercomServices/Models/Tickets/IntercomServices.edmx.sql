@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 06/10/2013 19:37:57
--- Generated from EDMX file: C:\projects\IntercomServices\IntercomServices\IntercomServices\Models\IntercomServices.edmx
+-- Date Created: 06/11/2013 13:33:56
+-- Generated from EDMX file: C:\IntercomServices\IntercomServices\Models\Tickets\IntercomServices.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,11 +17,32 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_ParentEntry]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[BaseDictionaries] DROP CONSTRAINT [FK_ParentEntry];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Street_inherits_BaseDictionary]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[BaseDictionaries_Street] DROP CONSTRAINT [FK_Street_inherits_BaseDictionary];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TicketType_inherits_BaseDictionary]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[BaseDictionaries_TicketType] DROP CONSTRAINT [FK_TicketType_inherits_BaseDictionary];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Tickets]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Tickets];
+GO
+IF OBJECT_ID(N'[dbo].[BaseDictionaries]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[BaseDictionaries];
+GO
+IF OBJECT_ID(N'[dbo].[BaseDictionaries_Street]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[BaseDictionaries_Street];
+GO
+IF OBJECT_ID(N'[dbo].[BaseDictionaries_TicketType]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[BaseDictionaries_TicketType];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables

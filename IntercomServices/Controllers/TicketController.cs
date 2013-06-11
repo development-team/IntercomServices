@@ -13,7 +13,7 @@ namespace iLexStudio.IntercomServices.Controllers
 {
     public class TicketController : Controller
     {
-        private LoginContexts _db = new LoginContexts();
+       
         //
         // GET: /Ticket/
 
@@ -32,8 +32,8 @@ namespace iLexStudio.IntercomServices.Controllers
 
                 if (!WebSecurity.IsAuthenticated)
                     ModelState.AddModelError("", "Please Log in first");
-                db.Tickets.AddObject(new Ticket { Assignee = 1, BuildingID = model.BuildingID, CallerName = model.CallerName, Description = model.Description, Email = model.Email, Phone = model.Phone });
-                db.SaveChanges();
+                //db.Tickets.Add(new Ticket { Assignee = 1, BuildingID = model.BuildingID, CallerName = model.CallerName, Description = model.Description, Email = model.Email, Phone = model.Phone });
+               // db.SaveChanges();
                 return View(model);
             }
            

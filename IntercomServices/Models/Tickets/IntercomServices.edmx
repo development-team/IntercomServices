@@ -101,11 +101,11 @@
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="iLexStudio.IntercomServices" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="iLexStudio.IntercomServices.Models.Tickets" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="IntercomContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Tickets" EntityType="iLexStudio.IntercomServices.Ticket" />
-          <EntitySet Name="BaseDictionaries" EntityType="iLexStudio.IntercomServices.BaseDictionary" />
-          <AssociationSet Name="ParentEntry" Association="iLexStudio.IntercomServices.ParentEntry">
+          <EntitySet Name="Tickets" EntityType="iLexStudio.IntercomServices.Models.Tickets.Ticket" />
+          <EntitySet Name="BaseDictionaries" EntityType="iLexStudio.IntercomServices.Models.Tickets.BaseDictionary" />
+          <AssociationSet Name="ParentEntry" Association="iLexStudio.IntercomServices.Models.Tickets.ParentEntry">
             <End Role="BaseDictionary" EntitySet="BaseDictionaries" />
             <End Role="BaseDictionary1" EntitySet="BaseDictionaries" />
           </AssociationSet>
@@ -121,7 +121,7 @@
           <Property Type="String" Name="Phone" Nullable="false" />
           <Property Type="String" Name="Email" Nullable="false" />
           <Property Type="String" Name="StatusReason" Nullable="false" />
-          <Property Type="iLexStudio.IntercomServices.TicketStatus" Name="Status" Nullable="false" />
+          <Property Type="iLexStudio.IntercomServices.Models.Tickets.TicketStatus" Name="Status" Nullable="false" />
           <Property Type="Int32" Name="Assignee" Nullable="false" />
         </EntityType>
         <EnumType Name="TicketStatus" IsFlags="true">
@@ -138,16 +138,16 @@
           </Key>
           <Property Type="Int32" Name="ObjectID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Value" Nullable="false" />
-          <NavigationProperty Name="ParentDictionary" Relationship="iLexStudio.IntercomServices.ParentEntry" FromRole="BaseDictionary1" ToRole="BaseDictionary" />
+          <NavigationProperty Name="ParentDictionary" Relationship="iLexStudio.IntercomServices.Models.Tickets.ParentEntry" FromRole="BaseDictionary1" ToRole="BaseDictionary" />
           <Property Type="String" Name="Description" Nullable="false" />
         </EntityType>
         <Association Name="ParentEntry">
-          <End Type="iLexStudio.IntercomServices.BaseDictionary" Role="BaseDictionary" Multiplicity="1" />
-          <End Type="iLexStudio.IntercomServices.BaseDictionary" Role="BaseDictionary1" Multiplicity="1" />
+          <End Type="iLexStudio.IntercomServices.Models.Tickets.BaseDictionary" Role="BaseDictionary" Multiplicity="1" />
+          <End Type="iLexStudio.IntercomServices.Models.Tickets.BaseDictionary" Role="BaseDictionary1" Multiplicity="1" />
         </Association>
-        <EntityType Name="Street" BaseType="iLexStudio.IntercomServices.BaseDictionary" >
+        <EntityType Name="Street" BaseType="iLexStudio.IntercomServices.Models.Tickets.BaseDictionary" >
           </EntityType>
-        <EntityType Name="TicketType" BaseType="iLexStudio.IntercomServices.BaseDictionary" >
+        <EntityType Name="TicketType" BaseType="iLexStudio.IntercomServices.Models.Tickets.BaseDictionary" >
           </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -156,7 +156,7 @@
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="iLexStudioIntercomServicesStoreContainer" CdmEntityContainer="IntercomContext">
     <EntitySetMapping Name="Tickets">
-      <EntityTypeMapping TypeName="IsTypeOf(iLexStudio.IntercomServices.Ticket)">
+      <EntityTypeMapping TypeName="IsTypeOf(iLexStudio.IntercomServices.Models.Tickets.Ticket)">
         <MappingFragment StoreEntitySet="Tickets">
           <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
           <ScalarProperty Name="CallerName" ColumnName="CallerName" />
@@ -171,25 +171,25 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="BaseDictionaries">
-      <EntityTypeMapping TypeName="IsTypeOf(iLexStudio.IntercomServices.BaseDictionary)">
+      <EntityTypeMapping TypeName="IsTypeOf(iLexStudio.IntercomServices.Models.Tickets.BaseDictionary)">
         <MappingFragment StoreEntitySet="BaseDictionaries">
           <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(iLexStudio.IntercomServices.Street)">
+      <EntityTypeMapping TypeName="IsTypeOf(iLexStudio.IntercomServices.Models.Tickets.Street)">
         <MappingFragment StoreEntitySet="BaseDictionaries_Street">
           <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
         </MappingFragment>
       </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(iLexStudio.IntercomServices.TicketType)">
+      <EntityTypeMapping TypeName="IsTypeOf(iLexStudio.IntercomServices.Models.Tickets.TicketType)">
         <MappingFragment StoreEntitySet="BaseDictionaries_TicketType">
           <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="ParentEntry" TypeName="iLexStudio.IntercomServices.ParentEntry" StoreEntitySet="BaseDictionaries">
+    <AssociationSetMapping Name="ParentEntry" TypeName="iLexStudio.IntercomServices.Models.Tickets.ParentEntry" StoreEntitySet="BaseDictionaries">
       <EndProperty Name="BaseDictionary1">
         <ScalarProperty Name="ObjectID" ColumnName="ParentEntry_BaseDictionary_ObjectID" />
       </EndProperty>
@@ -211,7 +211,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

@@ -5,15 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ef09e044eb4440b78db3e737ea5eb0a0" Name="Diagram1" >
-        <EntityTypeShape EntityType="iLexStudio.IntercomServices.Ticket" Width="1.5" PointX="0.75" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="iLexStudio.IntercomServices.BaseDictionary" Width="1.5" PointX="3.25" PointY="0.625" />
-        <AssociationConnector Association="iLexStudio.IntercomServices.ParentEntry" />
-        <EntityTypeShape EntityType="iLexStudio.IntercomServices.Street" Width="1.5" PointX="4.25" PointY="3.875" />
-        <InheritanceConnector EntityType="iLexStudio.IntercomServices.Street" />
-        <EntityTypeShape EntityType="iLexStudio.IntercomServices.TicketType" Width="1.5" PointX="0.5" PointY="3.875" />
-        <InheritanceConnector EntityType="iLexStudio.IntercomServices.TicketType" />
-        <InheritanceConnector EntityType="iLexStudio.IntercomServices.Street" />
-        <InheritanceConnector EntityType="iLexStudio.IntercomServices.TicketType" />
+        <EntityTypeShape EntityType="iLexStudio.IntercomServices.Models.Tickets.Ticket" Width="1.5" PointX="0.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="iLexStudio.IntercomServices.Models.Tickets.BaseDictionary" Width="1.5" PointX="3.25" PointY="0.625" />
+        <AssociationConnector Association="iLexStudio.IntercomServices.Models.Tickets.ParentEntry" />
+        <EntityTypeShape EntityType="iLexStudio.IntercomServices.Models.Tickets.Street" Width="1.5" PointX="4.25" PointY="3.875" />
+        <InheritanceConnector EntityType="iLexStudio.IntercomServices.Models.Tickets.Street" />
+        <EntityTypeShape EntityType="iLexStudio.IntercomServices.Models.Tickets.TicketType" Width="1.5" PointX="0.5" PointY="3.875" />
+        <InheritanceConnector EntityType="iLexStudio.IntercomServices.Models.Tickets.TicketType" />
+        <InheritanceConnector EntityType="iLexStudio.IntercomServices.Models.Tickets.Street" />
+        <InheritanceConnector EntityType="iLexStudio.IntercomServices.Models.Tickets.TicketType" />
+        <InheritanceConnector EntityType="iLexStudio.IntercomServices.Models.Tickets.Street" />
+        <InheritanceConnector EntityType="iLexStudio.IntercomServices.Models.Tickets.TicketType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

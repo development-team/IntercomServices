@@ -190,6 +190,31 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tickets\BaseDictionary.cs">
+      <DependentUpon>DbContextGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tickets\DbContextGenerator.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbContextGenerator.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tickets\DbContextGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbContextGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tickets\Street.cs">
+      <DependentUpon>DbContextGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tickets\Ticket.cs">
+      <DependentUpon>DbContextGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tickets\TicketStatus.cs">
+      <DependentUpon>DbContextGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tickets\TicketType.cs">
+      <DependentUpon>DbContextGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Users\AccountModels.cs" />
     <Compile Include="Models\Users\LoginContexts.cs" />
     <Compile Include="Models\Tickets\IntercomServices.Designer.cs">
@@ -274,6 +299,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>IntercomServices.edmx</DependentUpon>
       <LastGenOutput>IntercomServices.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Tickets\DbContextGenerator.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DbContextGenerator.Context.cs</LastGenOutput>
+      <DependentUpon>IntercomServices.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Tickets\DbContextGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DbContextGenerator.cs</LastGenOutput>
+      <DependentUpon>IntercomServices.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

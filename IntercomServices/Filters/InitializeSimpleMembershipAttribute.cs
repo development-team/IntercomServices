@@ -31,39 +31,47 @@ namespace iLexStudio.IntercomServices.Filters
 
                 try
                 {
+                    var databaseIsNew = false;
                     using (var context = new LoginContexts())
                     {
                         if (!context.Database.Exists())
                         {
                             // Create the SimpleMembership database without Entity Framework migration schema
-                            ((IObjectContextAdapter)context).ObjectContext.CreateDatabase();
+                            context.Database.Create();
+                            //((IObjectContextAdapter)context).ObjectContext.CreateDatabase();
+                            databaseIsNew = true;
+                            //
+
                         }
                     }
 
                     WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
-                    if (!WebSecurity.UserExists("Admin"))
-                    {
-                        WebSecurity.CreateUserAndAccount("Admin", "Admin");
-                    }
 
-                    if (!Roles.RoleExists("Admin"))
+                    if (databaseIsNew)
                     {
-                        Roles.CreateRole("Admin");
-                        Roles.AddUserToRole("Admin", "Admin");
-                    }
-                    if (!Roles.RoleExists("Engineer"))
-                    {
-                        Roles.CreateRole("Engineer");
-                    }
-                    if (!Roles.RoleExists("Operator"))
-                    {
-                        Roles.CreateRole("Operator");
-                    }
-                    if (!Roles.RoleExists("User"))
-                    {
-                        Roles.CreateRole("User");
-                    }
+                        if (!WebSecurity.UserExists("Admin"))
+                        {
+                            WebSecurity.CreateUserAndAccount("Admin", "Admin");
+                        }
 
+                        if (!Roles.RoleExists("Admin"))
+                        {
+                            Roles.CreateRole("Admin");
+                            Roles.AddUserToRole("Admin", "Admin");
+                        }
+                        if (!Roles.RoleExists("Engineer"))
+                        {
+                            Roles.CreateRole("Engineer");
+                        }
+                        if (!Roles.RoleExists("Operator"))
+                        {
+                            Roles.CreateRole("Operator");
+                        }
+                        if (!Roles.RoleExists("User"))
+                        {
+                            Roles.CreateRole("User");
+                        }
+                    }
 
                 }
                 catch (Exception ex)
