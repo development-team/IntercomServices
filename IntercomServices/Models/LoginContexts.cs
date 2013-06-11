@@ -18,7 +18,6 @@ namespace iLexStudio.IntercomServices.Models
 
         }
 
-        
         /// <summary>
         /// User profiles
         /// </summary>
