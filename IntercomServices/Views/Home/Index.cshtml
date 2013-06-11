@@ -21,53 +21,60 @@
 }
 @{
     
-    if (ViewBag.Authenticated){
+    if (ViewBag.Authenticated)
+    {
         string role = ViewBag.UserRole.ToString();
-        switch(role)
+        switch (role)
         {
             case "User":
             
-                @Html.ActionLink("Create ticket", "Create", "Ticket");
-                break;
-                
-            case "Admin":
-                <tr>
-                    @foreach( var user in Model)
-                    {
-                        <td>
-                            @user.UserName;  
-                        </td>
-                    }
+    @Html.ActionLink("Create ticket", "Create", "Ticket");
+                                                         break;
 
-                </tr>
-                break;
+            case "Admin":
+    <table>
+
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    @user.UserName
+                </td>
+            </tr>
+        }
+
+
+    </table>
+
+        break;
             case "Engineer":
-                break;                                        
+        break;
             case "Operator":
-                <tr>
-                @foreach (var ticket in Model)
-                {
-                    <td>
-                        @ticket.CallerName;
-                    </td>                 
-                    <td>
-                        @ticket.Description;
-                    </td>   
-                    <td>
-                        @ticket.Phone;
-                    </td>
-                    <td>
-                        @ticket.Status;
-                    </td>
-                }      
-                </tr>            
-                break;
+        <table>
+        @foreach (var ticket in Model)
+        {
+            <tr>
+            <td>
+                @ticket.CallerName;
+            </td>                 
+            <td>
+                @ticket.Description;
+            </td>   
+            <td>
+                @ticket.Phone;
+            </td>
+            <td>
+                @ticket.Status;
+            </td>
+            </tr> 
+        }
+        </table>   
+        break;
             default:
-                
-                break;
+
+        break;
         }
     }
 }
-
 
 

@@ -8,6 +8,7 @@ using System.Web.Security;
 using iLexStudio.IntercomServices.Filters;
 using iLexStudio.IntercomServices.Models;
 using iLexStudio.IntercomServices.Models.Users;
+using iLexStudio.IntercomServices.Models.Tickets;
 
 namespace IntercomServices.Controllers
 {
@@ -39,9 +40,9 @@ namespace IntercomServices.Controllers
                         return View(db.UserProfiles.ToList<UserProfile>());
                     }
                 case "Operator":
-                    using (var db = new LoginContexts())
+                    using (var db = new IntercomContext())
                     {
-                        return View(db.UserProfiles.ToList<UserProfile>());
+                        return View(db.Tickets.ToList<Ticket>());
                     }
                 default:
                     return View();

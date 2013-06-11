@@ -7,6 +7,7 @@ using WebMatrix.WebData;
 using iLexStudio.IntercomServices.Models;
 using System.Web.Security;
 using iLexStudio.IntercomServices.Models.Users;
+using iLexStudio.IntercomServices.Models.Tickets;
 
 namespace iLexStudio.IntercomServices.Filters
 {
@@ -42,6 +43,15 @@ namespace iLexStudio.IntercomServices.Filters
                             databaseIsNew = true;
                             //
 
+                        }
+                    }
+
+                    using (var context = new IntercomContext())
+                    {
+                        if (!context.Database.Exists())
+                        {
+                            // Create the SimpleMembership database without Entity Framework migration schema
+                            context.Database.Create();
                         }
                     }
 
