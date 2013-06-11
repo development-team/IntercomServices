@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 
-namespace iLexStudio.IntercomServices.Models
+namespace iLexStudio.IntercomServices.Models.Users
 {
     /// <summary>
     /// context of database

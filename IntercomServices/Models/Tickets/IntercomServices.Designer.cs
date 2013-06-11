@@ -19,11 +19,11 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("iLexStudio.IntercomServices", "ParentEntry", "BaseDictionary", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(iLexStudio.IntercomServices.Models.BaseDictionary), "BaseDictionary1", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(iLexStudio.IntercomServices.Models.BaseDictionary))]
+[assembly: EdmRelationshipAttribute("iLexStudio.IntercomServices", "ParentEntry", "BaseDictionary", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(iLexStudio.IntercomServices.Models.Tickets.BaseDictionary), "BaseDictionary1", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(iLexStudio.IntercomServices.Models.Tickets.BaseDictionary))]
 
 #endregion
 
-namespace iLexStudio.IntercomServices.Models
+namespace iLexStudio.IntercomServices.Models.Tickets
 {
     #region Contexts
     

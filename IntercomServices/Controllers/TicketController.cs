@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using WebMatrix.WebData;
 using iLexStudio.IntercomServices.Models;
+using iLexStudio.IntercomServices.Models.Tickets;
+using iLexStudio.IntercomServices.Models.Users;
 
 
 namespace iLexStudio.IntercomServices.Controllers

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace iLexStudio.IntercomServices.Models
+﻿namespace iLexStudio.IntercomServices.Models.Tickets
 {
     public class CreateModel
     {

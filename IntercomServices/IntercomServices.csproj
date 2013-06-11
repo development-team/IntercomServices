@@ -190,24 +190,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\LoginContexts.cs" />
-    <Compile Include="Models\IntercomServices.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>IntercomServices.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\IntercomServices.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>IntercomServices.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\IntercomServices.Designer.cs">
+    <Compile Include="Models\Users\AccountModels.cs" />
+    <Compile Include="Models\Users\LoginContexts.cs" />
+    <Compile Include="Models\Tickets\IntercomServices.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>IntercomServices.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\TicketModels.cs" />
+    <Compile Include="Models\Tickets\TicketModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -267,20 +257,20 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <EntityDeploy Include="Models\IntercomServices.edmx">
+    <EntityDeploy Include="Models\Tickets\IntercomServices.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>IntercomServices.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\IntercomServices.Context.tt">
+    <Content Include="Models\Tickets\IntercomServices.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>IntercomServices.edmx</DependentUpon>
       <LastGenOutput>IntercomServices.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\IntercomServices.edmx.diagram">
+    <Content Include="Models\Tickets\IntercomServices.edmx.diagram">
       <DependentUpon>IntercomServices.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\IntercomServices.edmx.sql" />
-    <Content Include="Models\IntercomServices.tt">
+    <Content Include="Models\Tickets\IntercomServices.edmx.sql" />
+    <Content Include="Models\Tickets\IntercomServices.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>IntercomServices.edmx</DependentUpon>
       <LastGenOutput>IntercomServices.cs</LastGenOutput>

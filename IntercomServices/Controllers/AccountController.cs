@@ -9,6 +9,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using iLexStudio.IntercomServices.Filters;
 using iLexStudio.IntercomServices.Models;
+using iLexStudio.IntercomServices.Models.Users;
 
 namespace iLexStudio.IntercomServices.Controllers
 {

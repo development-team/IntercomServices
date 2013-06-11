@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using WebMatrix.WebData;
 using iLexStudio.IntercomServices.Models;
 using System.Web.Security;
+using iLexStudio.IntercomServices.Models.Users;
 
 namespace iLexStudio.IntercomServices.Filters
 {
