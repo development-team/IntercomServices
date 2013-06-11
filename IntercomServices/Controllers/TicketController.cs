@@ -101,8 +101,28 @@ namespace iLexStudio.IntercomServices.Controllers
                 EditedTicket.StatusReason = model.StatusReason;
                 db.SaveChanges();
             }
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public ActionResult Add(int UserID, int TicketID)
+        {
+            using (var db = new IntercomContext())
+            {
+                Ticket ticket = db.Tickets.Find(TicketID);
+                if (ticket == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    ticket.Assignee = UserID;
+                    ticket.Status = TicketStatus.Assigned;
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+            }
         }
 
     }
+
 }

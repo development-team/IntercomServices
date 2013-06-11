@@ -44,6 +44,11 @@ namespace IntercomServices.Controllers
                     {
                         return View(db.Tickets.ToList<Ticket>());
                     }
+                case "Engineer":
+                    using (var db = new IntercomContext())
+                    {
+                        return View(db.Tickets.Where(ticket => ticket.Assignee == WebSecurity.CurrentUserId || ticket.Status == TicketStatus.Checked).ToList<Ticket>());
+                    }
                 default:
                     return View();
             }

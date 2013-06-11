@@ -48,6 +48,54 @@
 
         break;
             case "Engineer":
+           <h1>My tickets</h1>    
+            <table>
+        @foreach (var ticket in Model)
+        {
+            if (ticket.Assignee == WebSecurity.CurrentUserId){
+            <tr>
+            <td>
+                @ticket.CallerName
+            </td>                 
+            <td>
+                @ticket.Description
+            </td>   
+            <td>
+                @ticket.Phone
+            </td>
+            <td>
+                @ticket.Status
+            </td>
+            </tr> 
+            }
+        }
+        </table>
+        <h1>Available tickets</h1> 
+         <table>
+        @foreach (var ticket in Model)
+        {
+            //2 - checked status
+            if (ticket.Status == iLexStudio.IntercomServices.Models.Tickets.TicketStatus.Checked){
+            <tr>
+            <td>
+                @ticket.CallerName
+            </td>                 
+            <td>
+                @ticket.Description
+            </td>   
+            <td>
+                @ticket.Phone
+            </td>
+            <td>
+                @ticket.Status
+            </td>
+             <td>
+                @Html.ActionLink("Add to my tickets", "Add", "Ticket", new {UserID = WebSecurity.CurrentUserId, TicketID = ticket.ObjectID },null)
+            </td>
+            </tr> 
+            }
+        }
+        </table>
         break;
             case "Operator":
         <table>
