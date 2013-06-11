@@ -21,8 +21,9 @@
 }
 @{
     
-    if (ViewBag.Authenticated)
+    if (ViewBag.Authenticated && ViewBag.UserRole!=null)
     {
+        
         string role = ViewBag.UserRole.ToString();
         switch (role)
         {
