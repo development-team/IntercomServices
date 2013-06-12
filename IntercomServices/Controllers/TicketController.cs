@@ -106,6 +106,13 @@ namespace iLexStudio.IntercomServices.Controllers
         [HttpGet]
         public ActionResult Add(int UserID, int TicketID)
         {
+            string[] roles = Roles.GetRolesForUser(WebSecurity.CurrentUserName);
+            if (!(roles.Contains("Operator") || roles.Contains("Engineer")))
+            {
+                //A potentially dangerous Request.Path value was detected from the client (:) exception appearing
+                //return Request.UrlReferrer == null ? RedirectToAction("Index","Home") : RedirectToAction(Request.UrlReferrer.ToString());
+                return RedirectToAction("Index", "Home");
+            }
             using (var db = new IntercomContext())
             {
                 Ticket ticket = db.Tickets.Find(TicketID);
@@ -117,6 +124,84 @@ namespace iLexStudio.IntercomServices.Controllers
                 {
                     ticket.Assignee = UserID;
                     ticket.Status = TicketStatus.Assigned;
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Completed(int TicketID)
+        {
+            string[] roles = Roles.GetRolesForUser(WebSecurity.CurrentUserName);
+            if (!(roles.Contains("Operator") || roles.Contains("Engineer")))
+            {
+                //A potentially dangerous Request.Path value was detected from the client (:) exception appearing
+                //return Request.UrlReferrer == null ? RedirectToAction("Index","Home") : RedirectToAction(Request.UrlReferrer.ToString());
+                return RedirectToAction("Index", "Home");
+            }
+            using (var db = new IntercomContext())
+            {
+                Ticket ticket = db.Tickets.Find(TicketID);
+                if (ticket == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    ticket.Status = TicketStatus.Completed;
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Checked(int TicketID)
+        {
+            string[] roles = Roles.GetRolesForUser(WebSecurity.CurrentUserName);
+            if (!roles.Contains("Operator"))
+            {
+                //A potentially dangerous Request.Path value was detected from the client (:) exception appearing
+                //return Request.UrlReferrer == null ? RedirectToAction("Index","Home") : RedirectToAction(Request.UrlReferrer.ToString());
+                return RedirectToAction("Index", "Home");
+            }
+            using (var db = new IntercomContext())
+            {
+                Ticket ticket = db.Tickets.Find(TicketID);
+                if (ticket == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    ticket.Status = TicketStatus.Checked;
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Closed(int TicketID)
+        {
+            string[] roles = Roles.GetRolesForUser(WebSecurity.CurrentUserName);
+            if (!roles.Contains("Operator"))
+            {
+                //A potentially dangerous Request.Path value was detected from the client (:) exception appearing
+                //return Request.UrlReferrer == null ? RedirectToAction("Index","Home") : RedirectToAction(Request.UrlReferrer.ToString());
+                return RedirectToAction("Index", "Home");
+            }
+            using (var db = new IntercomContext())
+            {
+                Ticket ticket = db.Tickets.Find(TicketID);
+                if (ticket == null)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    ticket.Status = TicketStatus.Closed;
                     db.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
