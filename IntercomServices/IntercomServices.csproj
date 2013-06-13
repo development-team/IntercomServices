@@ -365,9 +365,15 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Ticket\Create.cshtml" />
     <Content Include="Views\Ticket\Edit.cshtml" />
+    <Content Include="Views\Home\AdminPartialView.cshtml" />
+    <Content Include="Views\Home\OperatorPartialView.cshtml" />
+    <Content Include="Views\Home\EngineerPartialView.cshtml" />
+    <Content Include="Views\Home\UserPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

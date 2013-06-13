@@ -1,0 +1,14 @@
+﻿<table>
+    @using iLexStudio.IntercomServices.Models.Users;
+    @using (var db = new LoginContexts())
+    {
+        foreach (var user in db.UserProfiles.ToList<UserProfile>())
+        {
+            <tr>
+                <td>
+                    @user.UserName
+                </td>
+            </tr>
+        }
+    }
+</table>

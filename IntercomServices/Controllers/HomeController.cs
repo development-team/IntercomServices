@@ -20,38 +20,13 @@ namespace IntercomServices.Controllers
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
             ViewBag.Authenticated = WebSecurity.IsAuthenticated;
-            string temp = "Your are in role ";
             if (!WebSecurity.UserExists(WebSecurity.CurrentUserName))
             {
-                return View();
+                WebSecurity.Logout();
+                return View("Register","Account");
             }
-            foreach (string s in Roles.GetRolesForUser(WebSecurity.CurrentUserName))
-            {
-                temp = temp + " " + s;
-            }
-            if (WebSecurity.IsAuthenticated)
-                ViewBag.UserRole = Roles.GetRolesForUser(WebSecurity.CurrentUserName)[0];
-            switch (Roles.GetRolesForUser(WebSecurity.CurrentUserName)[0])
-            {
-                case "Admin":
-
-                    using (var db = new LoginContexts())
-                    {
-                        return View(db.UserProfiles.ToList<UserProfile>());
-                    }
-                case "Operator":
-                    using (var db = new IntercomContext())
-                    {
-                        return View(db.Tickets.ToList<Ticket>());
-                    }
-                case "Engineer":
-                    using (var db = new IntercomContext())
-                    {
-                        return View(db.Tickets.Where(ticket => (ticket.Assignee == WebSecurity.CurrentUserId&&ticket.Status!=TicketStatus.Completed) || ticket.Status == TicketStatus.Checked).ToList<Ticket>());
-                    }
-                default:
-                    return View();
-            }
+            return View();
+            
         }
 
 

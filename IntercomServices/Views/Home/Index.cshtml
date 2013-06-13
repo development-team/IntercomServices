@@ -21,130 +21,25 @@
 }
 @{
     
-    if (ViewBag.Authenticated && ViewBag.UserRole!=null)
+    if (ViewBag.Authenticated)
     {
-        
-        string role = ViewBag.UserRole.ToString();
-        switch (role)
-        {
-            case "User":
-            
-    @Html.ActionLink("Create ticket", "Create", "Ticket");
-                                                         break;
 
-            case "Admin":
-    <table>
-
-        @foreach (var user in Model)
+        string[] roles = Roles.GetRolesForUser(WebSecurity.CurrentUserName);
+        if (roles.Contains("Admin"))
         {
-            <tr>
-                <td>
-                    @user.UserName
-                </td>
-            </tr>
+            Html.RenderPartial("AdminPartialView");
         }
-
-
-    </table>
-
-        break;
-            case "Engineer":
-           <h1>My tickets</h1>    
-            <table>
-        @foreach (var ticket in Model)
+        if (roles.Contains("Operator"))
         {
-            if (ticket.Assignee == WebSecurity.CurrentUserId){
-            <tr>
-            <td>
-                @ticket.CallerName
-            </td>                 
-            <td>
-                @ticket.Description
-            </td>   
-            <td>
-                @ticket.Phone
-            </td>
-            <td>
-                @ticket.Status
-            </td>
-            <td>
-                @Html.ActionLink("Complete", "Completed", "Ticket", new {TicketID = ticket.ObjectID }, null)
-            </td>
-            </tr> 
-            }
+            Html.RenderPartial("OperatorPartialView");
         }
-        </table>
-        <h1>Available tickets</h1> 
-         <table>
-        @foreach (var ticket in Model)
+        if (roles.Contains("Engineer"))
         {
-            if (ticket.Status == iLexStudio.IntercomServices.Models.Tickets.TicketStatus.Checked){
-            <tr>
-            <td>
-                @ticket.CallerName
-            </td>                 
-            <td>
-                @ticket.Description
-            </td>   
-            <td>
-                @ticket.Phone
-            </td>
-            <td>
-                @ticket.Status
-            </td>
-             <td>
-                @Html.ActionLink("Add to my tickets", "Add", "Ticket", new {UserID = WebSecurity.CurrentUserId, TicketID = ticket.ObjectID },null)
-            </td>
-            </tr> 
-            }
+            Html.RenderPartial("EngineerPartialView");
         }
-        </table>
-        break;
-            case "Operator":
-        <table>
-        @foreach (var ticket in Model)
+        if (roles.Contains("User"))
         {
-            <tr>
-            <td>
-                @ticket.CallerName
-            </td>                 
-            <td>
-                @ticket.Description
-            </td>   
-            <td>
-                @ticket.Phone
-            </td>
-            <td>
-                @ticket.Status
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", "Ticket", new {ObjectID = (int)ticket.ObjectID},null)
-            </td>
-            <td>
-                @using iLexStudio.IntercomServices.Models.Tickets
-                @{
-                    TicketStatus status = ticket.Status;
-                    switch (status)
-                    {
-                        case TicketStatus.New:
-                            @Html.ActionLink("Check", "Checked", "Ticket", new {TicketID = ticket.ObjectID }, null)
-                            break;
-                        case TicketStatus.Completed:
-                            @Html.ActionLink("Close", "Closed", "Ticket", new {TicketID = ticket.ObjectID }, null)
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            </td>
-            </tr> 
-        }
-        </table>   
-        @Html.ActionLink("Create new", "Create", "Ticket");
-        break;
-            default:
-
-        break;
+            Html.RenderPartial("UserPartialView");
         }
     }
 }

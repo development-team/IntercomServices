@@ -1,0 +1,45 @@
+﻿@{<table>
+    @using iLexStudio.IntercomServices.Models.Tickets;
+    @using (var db = new IntercomContext())
+    {
+        foreach (var ticket in db.Tickets.ToList<Ticket>())
+        {
+            <tr>
+            <td>
+                @ticket.CallerName
+            </td>                 
+            <td>
+                @ticket.Description
+            </td>   
+            <td>
+                @ticket.Phone
+            </td>
+            <td>
+                @ticket.Status
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Ticket", new {ObjectID = (int)ticket.ObjectID},null)
+            </td>
+            <td>
+                @using iLexStudio.IntercomServices.Models.Tickets
+                @{
+                    TicketStatus status = ticket.Status;
+                    switch (status)
+                    {
+                        case TicketStatus.New:
+                            @Html.ActionLink("Check", "Checked", "Ticket", new {TicketID = ticket.ObjectID }, null)
+                            break;
+                        case TicketStatus.Completed:
+                            @Html.ActionLink("Close", "Closed", "Ticket", new {TicketID = ticket.ObjectID }, null)
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            </td>
+            </tr> 
+        }
+        </table>   
+        @Html.ActionLink("Create new", "Create", "Ticket");
+    }    
+   

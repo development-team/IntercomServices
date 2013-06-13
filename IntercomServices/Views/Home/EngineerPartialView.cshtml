@@ -1,0 +1,58 @@
+﻿@using iLexStudio.IntercomServices.Models.Tickets;
+
+@using (var db = new IntercomContext())
+{
+    {<h1>My tickets</h1>    
+            <table>
+
+
+        @foreach (var ticket in db.Tickets.Where(ticket => (ticket.Assignee == WebSecurity.CurrentUserId && ticket.Status != TicketStatus.Completed) || ticket.Status == TicketStatus.Checked).ToList<Ticket>())
+        {
+            if (ticket.Assignee == WebSecurity.CurrentUserId){
+            <tr>
+            <td>
+                @ticket.CallerName
+            </td>                 
+            <td>
+                @ticket.Description
+            </td>   
+            <td>
+                @ticket.Phone
+            </td>
+            <td>
+                @ticket.Status
+            </td>
+            <td>
+                @Html.ActionLink("Complete", "Completed", "Ticket", new {TicketID = ticket.ObjectID }, null)
+            </td>
+            </tr> 
+            }
+        }
+        </table>
+        }
+        <h1>Available tickets</h1> 
+         <table>
+        @foreach (var ticket in db.Tickets.Where(ticket => (ticket.Assignee == WebSecurity.CurrentUserId && ticket.Status != TicketStatus.Completed) || ticket.Status == TicketStatus.Checked).ToList<Ticket>())
+        {
+            if (ticket.Status == iLexStudio.IntercomServices.Models.Tickets.TicketStatus.Checked){
+            <tr>
+            <td>
+                @ticket.CallerName
+            </td>                 
+            <td>
+                @ticket.Description
+            </td>   
+            <td>
+                @ticket.Phone
+            </td>
+            <td>
+                @ticket.Status
+            </td>
+             <td>
+                @Html.ActionLink("Add to my tickets", "Add", "Ticket", new {UserID = WebSecurity.CurrentUserId, TicketID = ticket.ObjectID },null)
+            </td>
+            </tr> 
+            }
+        }
+        </table>
+}
