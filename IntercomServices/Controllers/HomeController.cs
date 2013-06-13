@@ -23,7 +23,7 @@ namespace IntercomServices.Controllers
             if (!WebSecurity.UserExists(WebSecurity.CurrentUserName))
             {
                 WebSecurity.Logout();
-                return View("Register","Account");
+                return RedirectToAction("Register","Account");
             }
             return View();
             
