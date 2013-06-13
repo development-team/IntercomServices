@@ -1,5 +1,5 @@
-﻿@{<table>
-    @using iLexStudio.IntercomServices.Models.Tickets;
+﻿    @using iLexStudio.IntercomServices.Models.Tickets
+    <table>    
     @using (var db = new IntercomContext())
     {
         foreach (var ticket in db.Tickets.ToList<Ticket>())
@@ -39,7 +39,8 @@
             </td>
             </tr> 
         }
-        </table>   
+        
         @Html.ActionLink("Create new", "Create", "Ticket");
-    }    
+    }
+    </table>   
    

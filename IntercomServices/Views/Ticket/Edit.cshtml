@@ -35,8 +35,9 @@
                 @Html.TextBoxFor(m => m.Email)
             </li>
             <li>
+                @using iLexStudio.IntercomServices.Models.Tickets
                 @Html.LabelFor(m => m.Status)
-                @Html.TextBoxFor(m => m.Status)
+                @Html.DropDownListFor(model => model.Status, new SelectList(Enum.GetValues(typeof(TicketStatus))))
             </li>
             <li>
                 @Html.LabelFor(m => m.StatusReason)
