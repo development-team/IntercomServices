@@ -22,8 +22,10 @@ namespace IntercomServices.Controllers
             ViewBag.Authenticated = WebSecurity.IsAuthenticated;
             if (!WebSecurity.UserExists(WebSecurity.CurrentUserName))
             {
-                WebSecurity.Logout();
-                return RedirectToAction("Register","Account");
+                if (WebSecurity.IsAuthenticated){
+                    WebSecurity.Logout();
+                    return RedirectToAction("Register","Account");
+                }
             }
             return View();
             
