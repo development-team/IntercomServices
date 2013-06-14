@@ -29,14 +29,17 @@
         {
             Html.RenderPartial("AdminPartialView");
         }
+        <hr />
         if (roles.Contains("Operator"))
         {
             Html.RenderPartial("OperatorPartialView");
         }
+        <hr />
         if (roles.Contains("Engineer"))
         {
             Html.RenderPartial("EngineerPartialView");
         }
+        <hr />
         if (roles.Contains("User"))
         {
             Html.RenderPartial("UserPartialView");

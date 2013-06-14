@@ -329,6 +329,72 @@ namespace iLexStudio.IntercomServices.Controllers
             return PartialView("_RemoveExternalLoginsPartial", externalLogins);
         }
 
+        [HttpGet]
+        public ActionResult Index(ViewAccountModel model, int AccountID)
+        {
+            if (!Roles.GetRolesForUser(WebSecurity.CurrentUserName).Contains("Admin"))
+            {
+                return RedirectToAction("Index","Home");
+            }
+            using (var db = new LoginContexts())
+            {
+                SimpleMembershipProvider provider = new SimpleMembershipProvider();
+                UserProfile Profile = db.UserProfiles.Find(AccountID);
+                model.UserName = Profile.UserName;
+                string[] AccountRoles = Roles.GetRolesForUser(Profile.UserName);
+                model.AdminChecked = AccountRoles.Contains("Admin");
+                model.EngineerChecked = AccountRoles.Contains("Engineer");
+                model.OperatorChecked = AccountRoles.Contains("Operator");
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        [InitializeSimpleMembership]
+        public ActionResult Index(ViewAccountModel model)
+        {
+            if (!Roles.GetRolesForUser(WebSecurity.CurrentUserName).Contains("Admin"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            string [] roles = Roles.GetRolesForUser(model.UserName);
+            
+            // dont know how to make easier.
+            if (model.AdminChecked)
+            {
+                if (!roles.Contains("Admin"))
+                    Roles.AddUserToRole(model.UserName, "Admin");
+            }
+            else
+            {
+                if (roles.Contains("Admin"))
+                    Roles.RemoveUserFromRole(model.UserName, "Admin");
+            }
+            if (model.EngineerChecked)
+            {
+                if (!roles.Contains("Engineer"))
+                    Roles.AddUserToRole(model.UserName, "Engineer");
+            }
+            else
+            {
+                if (roles.Contains("Engineer"))
+                    Roles.RemoveUserFromRole(model.UserName, "Engineer");
+            }
+            if (model.OperatorChecked)
+            {
+                if (!roles.Contains("Operator"))
+                    Roles.AddUserToRole(model.UserName, "Operator");
+            }
+            else
+            {
+                if (roles.Contains("Operator"))
+                    Roles.RemoveUserFromRole(model.UserName, "Operator");
+            }
+            return View(model);
+        }
+
+
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)
         {
@@ -404,5 +470,6 @@ namespace iLexStudio.IntercomServices.Controllers
             }
         }
         #endregion
+
     }
 }

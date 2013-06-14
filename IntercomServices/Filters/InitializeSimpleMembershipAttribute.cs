@@ -72,14 +72,17 @@ namespace iLexStudio.IntercomServices.Filters
                         if (!Roles.RoleExists("Engineer"))
                         {
                             Roles.CreateRole("Engineer");
+                            Roles.AddUserToRole("Admin", "Engineer");
                         }
                         if (!Roles.RoleExists("Operator"))
                         {
                             Roles.CreateRole("Operator");
+                            Roles.AddUserToRole("Admin", "Operator");
                         }
                         if (!Roles.RoleExists("User"))
                         {
                             Roles.CreateRole("User");
+                            Roles.AddUserToRole("Admin", "User");
                         }
                     }
 

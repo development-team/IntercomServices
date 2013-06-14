@@ -6,7 +6,7 @@
         {
             <tr>
                 <td>
-                    @user.UserName
+                    @Html.ActionLink(user.UserName, "Index", "Account", new { AccountID = user.UserId }, null)
                 </td>
             </tr>
         }

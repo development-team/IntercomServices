@@ -73,6 +73,14 @@ namespace iLexStudio.IntercomServices.Models.Users
         public string ConfirmPassword { get; set; }
     }
 
+    public class ViewAccountModel
+    {
+        public string UserName { get; set; }
+        public bool AdminChecked { get; set; }
+        public bool OperatorChecked { get; set; }
+        public bool EngineerChecked { get; set; }
+    }
+
     public class ExternalLogin
     {
         public string Provider { get; set; }

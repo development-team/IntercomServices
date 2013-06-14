@@ -374,6 +374,7 @@
     <Content Include="Views\Home\OperatorPartialView.cshtml" />
     <Content Include="Views\Home\EngineerPartialView.cshtml" />
     <Content Include="Views\Home\UserPartialView.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
