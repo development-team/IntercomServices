@@ -1,0 +1,36 @@
+﻿@model iLexStudio.IntercomServices.Models.Address
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Address</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Street)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Street)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Home)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Home)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Appartment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Appartment)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.AddressID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

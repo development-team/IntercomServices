@@ -1,0 +1,53 @@
+﻿@model iLexStudio.IntercomServices.Models.Address
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Address</legend>
+
+        @Html.HiddenFor(model => model.AddressID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Street)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Street)
+            @Html.ValidationMessageFor(model => model.Street)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Home)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Home)
+            @Html.ValidationMessageFor(model => model.Home)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Appartment)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Appartment)
+            @Html.ValidationMessageFor(model => model.Appartment)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

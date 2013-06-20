@@ -26,7 +26,17 @@ namespace iLexStudio.IntercomServices.Controllers
         {
             if (!WebSecurity.IsAuthenticated)            
                 ModelState.AddModelError("", "Please Log in first");
-            _db.Tickets.Add(new Ticket { Assignee = "", BuildingID = model.BuildingID, CallerName = model.CallerName, Description = model.Description, Email = model.Email, Phone = model.Phone, Status = "", StatusReason = ""});
+             //Address address = new Address(model.Street, model.Home, model.Appartment);
+             AddressController addressController = new AddressController ();
+             model.AddressID = addressController.GetIdOfAddressFromDbByOtherValues(model.Street, model.Home, model.Appartment);
+             if (model.AddressID == -1)
+             {
+                 Address address = new Address(model.Street, model.Home, model.Appartment);
+                 _db.Addresses.Add(address);
+                 _db.SaveChanges();
+                 model.AddressID = address.AddressID;
+              }
+             _db.Tickets.Add(new Ticket { Assignee = "", AddressID = model.AddressID, CallerName = model.CallerName, Description = model.Description, Email = model.Email, Phone = model.Phone, StatusID = "1", StatusReason = "1" });
             _db.SaveChanges();
             return View(model);
         }

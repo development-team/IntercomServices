@@ -1,27 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="iLexStudio.IntercomServices" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
   <EntityContainer Name="IntercomContext" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Tickets" EntityType="iLexStudio.IntercomServices.Ticket" />
     <EntitySet Name="BaseDictionaries" EntityType="iLexStudio.IntercomServices.BaseDictionary" />
     <AssociationSet Name="ParentEntry" Association="iLexStudio.IntercomServices.ParentEntry">
       <End Role="BaseDictionary" EntitySet="BaseDictionaries" />
       <End Role="BaseDictionary1" EntitySet="BaseDictionaries" />
     </AssociationSet>
+    <EntitySet Name="Addresses" EntityType="iLexStudio.IntercomServices.Address" />
+    <EntitySet Name="UserProfiles" EntityType="iLexStudio.IntercomServices.UserProfile" />
+    <EntitySet Name="webpages_Membership" EntityType="iLexStudio.IntercomServices.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="iLexStudio.IntercomServices.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="iLexStudio.IntercomServices.webpages_Roles" />
+    <AssociationSet Name="webpages_UsersInRoles" Association="iLexStudio.IntercomServices.webpages_UsersInRoles">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <EntitySet Name="Tickets" EntityType="iLexStudio.IntercomServices.Ticket" />
+    <AssociationSet Name="FK_Ticket_to_Adress" Association="iLexStudio.IntercomServices.FK_Ticket_to_Adress">
+      <End EntitySet="Addresses" Role="Address" />
+      <End EntitySet="Tickets" Role="Ticket1" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Ticket">
-    <Key>
-      <PropertyRef Name="ObjectID" />
-    </Key>
-    <Property Type="Int32" Name="ObjectID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="CallerName" Nullable="false" />
-    <Property Type="String" Name="Description" Nullable="false" />
-    <Property Type="String" Name="BuildingID" Nullable="false" />
-    <Property Type="String" Name="Phone" Nullable="false" />
-    <Property Type="String" Name="Email" Nullable="false" />
-    <Property Type="String" Name="StatusReason" Nullable="false" />
-    <Property Type="iLexStudio.IntercomServices.TicketStatus" Name="Status" Nullable="false" />
-    <Property Type="Int32" Name="Assignee" Nullable="false" />
-  </EntityType>
   <EnumType Name="TicketStatus" IsFlags="true">
     <Member Name="New" Value="1" />
     <Member Name="Checked" Value="2" />
@@ -45,4 +44,86 @@
   </Association>
   <EntityType Name="Street" BaseType="iLexStudio.IntercomServices.BaseDictionary" />
   <EntityType Name="TicketType" BaseType="iLexStudio.IntercomServices.BaseDictionary" />
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Type="Int32" Name="AddressID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Street" Unicode="true" FixedLength="false" MaxLength="Max" />
+    <Property Type="String" Name="Home" Unicode="true" FixedLength="false" MaxLength="10" />
+    <Property Type="String" Name="Appartment" Unicode="true" FixedLength="false" MaxLength="5" />
+    <NavigationProperty Name="Tickets" Relationship="iLexStudio.IntercomServices.FK_Ticket_to_Adress" FromRole="Address" ToRole="Ticket1" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Type="Int32" Name="UserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="UserName" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="webpages_Roles" Relationship="iLexStudio.IntercomServices.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Precision="3" />
+    <Property Type="String" Name="ConfirmationToken" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsConfirmed" />
+    <Property Type="DateTime" Name="LastPasswordFailureDate" Precision="3" />
+    <Property Type="Int32" Name="PasswordFailuresSinceLastSuccess" Nullable="false" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="PasswordChangedDate" Precision="3" />
+    <Property Type="String" Name="PasswordSalt" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PasswordVerificationToken" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="PasswordVerificationTokenExpirationDate" Precision="3" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Type="String" Name="Provider" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ProviderUserId" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Type="Int32" Name="RoleId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="RoleName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserProfiles" Relationship="iLexStudio.IntercomServices.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+  </EntityType>
+  <Association Name="webpages_UsersInRoles">
+    <End Type="iLexStudio.IntercomServices.webpages_Roles" Role="webpages_Roles" Multiplicity="*" />
+    <End Type="iLexStudio.IntercomServices.UserProfile" Role="UserProfile" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Ticket">
+    <Key>
+      <PropertyRef Name="TicketID" />
+    </Key>
+    <Property Type="Int32" Name="TicketID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="CallerName" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="AddressID" />
+    <Property Type="String" Name="Phone" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="StatusReason" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="StatusID" />
+    <Property Type="String" Name="Assignee" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Addresses" Relationship="iLexStudio.IntercomServices.FK_Ticket_to_Adress" FromRole="Ticket1" ToRole="Address" />
+  </EntityType>
+  <Association Name="FK_Ticket_to_Adress">
+    <End Type="iLexStudio.IntercomServices.Address" Multiplicity="0..1" Role="Address" />
+    <End Type="iLexStudio.IntercomServices.Ticket" Multiplicity="*" Role="Ticket1" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="Ticket1">
+        <PropertyRef Name="AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

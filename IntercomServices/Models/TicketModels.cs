@@ -14,33 +14,48 @@ namespace iLexStudio.IntercomServices.Models
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int ObjectID { get; set; }
+        public int TicketID { get; set; }
         public string CallerName { get; set; }
         public string Description { get; set; }
-        public string BuildingID { get; set; }
+        public int AddressID { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string StatusReason { get; set; }
-        public string Status { get; set; }
+        public string StatusID{get; set;}
         public string Assignee { get; set; }
+             
     }
     
     public class CreateModel
     {
         [Required]
-        [Display(Name = "Your name")]
+        [Display(Name = "Coller's name")]
         public string CallerName { get; set; }
         [Required]
         [Display(Name = "Problem")]
         public string Description { get; set; }
         [Required]
-        [Display(Name = "Address")]
-        public string BuildingID { get; set; }
+        [Display(Name = "Address ID")]
+        public int AddressID { get; set; }
+        [Required]
+        [Display(Name = "Street")]
+        public string Street { get; set; }
+        [Required]
+        [Display(Name = "Home")]
+        [StringLength(5, ErrorMessage = "Home umber  cannot be longer than 5 characters.")]
+        public string Home { get; set; }
+        [Required]
+        [Display(Name = "Appartment")]
+        [StringLength(10, ErrorMessage = "Appartment cannot be longer than 10 characters.")]
+        public string Appartment { get; set; }
         [Required]
         [Display(Name = "Phone")]
         public string Phone { get; set; }
         [Required]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
+
+
+    
     }
 }
