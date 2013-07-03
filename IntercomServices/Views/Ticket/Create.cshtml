@@ -6,46 +6,55 @@
     <h1>@ViewBag.Title.</h1>
     <h2>Please fill this boxes.</h2>
 </hgroup>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
+<table>
+    <tr>
+        <td>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
 
-    <fieldset>
-        <legend>Creating form</legend>
-        <ol>
-             <li>
-                @Html.LabelFor(m => m.CallerName)
-                @Html.TextBoxFor(m => m.CallerName)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Description)
-                @Html.TextBoxFor(m => m.Description)
-            </li>
-            <li>
+        <fieldset>
+            <legend>Creating form</legend>
+            <ol>
+                 <li>
+                    @Html.LabelFor(m => m.CallerName)
+                    @Html.TextBoxFor(m => m.CallerName)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextBoxFor(m => m.Description)
+                </li>
+                <li>
                  
-                <div>Address:
-                    @Html.LabelFor(model => model.Street)
-                    @Html.EditorFor(model => model.Street)
-                    @Html.ValidationMessageFor(model => model.Street)
-                    @Html.LabelFor(model => model.Home)
-                    @Html.EditorFor(model => model.Home, new { size = "5" })
-                    @Html.ValidationMessageFor(model => model.Home)
-                    @Html.LabelFor(model => model.Appartment)
-                    @Html.EditorFor(model => model.Appartment, new { size = "10" })
-                    @Html.ValidationMessageFor(model => model.Appartment)
-                </div>
+                    <div><label>Address:</label>
+                        <div class="littlelabel" >
+                        @Html.LabelFor(model => model.Street)
+                        @Html.EditorFor(model => model.Street)
+                        @Html.ValidationMessageFor(model => model.Street)
+                        @Html.LabelFor(model => model.Home)
+                        @Html.EditorFor(model => model.Home)
+                        @Html.ValidationMessageFor(model => model.Home)
+                        @Html.LabelFor(model => model.Appartment)
+                        @Html.EditorFor(model => model.Appartment)
+                        @Html.ValidationMessageFor(model => model.Appartment)
+                            </div>
+                    </div>
 
-            </li>
-            <li>
+                </li>
+                <li>
 
-                @Html.LabelFor(m => m.Phone)
-                @Html.TextBoxFor(m => m.Phone)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Email)
-                @Html.TextBoxFor(m => m.Email)
-            </li>
-        </ol>
-        <input type="submit" value="Create ticket" />
-    </fieldset>
-}
+                    @Html.LabelFor(m => m.Phone)
+                    @Html.TextBoxFor(m => m.Phone)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email)
+                </li>
+            </ol>
+            <input type="submit" value="Create ticket" />
+        </fieldset>
+    }
+            </td>
+    <td>block2 ( list of  with avilible tickets)   </td>
+    </tr>
+</table>

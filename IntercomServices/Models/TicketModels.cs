@@ -21,7 +21,7 @@ namespace iLexStudio.IntercomServices.Models
         public string Phone { get; set; }
         public string Email { get; set; }
         public string StatusReason { get; set; }
-        public string StatusID{get; set;}
+        public string StatusID{get; set;} 
         public string Assignee { get; set; }
              
     }
@@ -42,11 +42,11 @@ namespace iLexStudio.IntercomServices.Models
         public string Street { get; set; }
         [Required]
         [Display(Name = "Home")]
-        [StringLength(5, ErrorMessage = "Home umber  cannot be longer than 5 characters.")]
+        [StringLength(5, MinimumLength=1, ErrorMessage = "Home umber  cannot be longer than 5 characters.")]
         public string Home { get; set; }
         [Required]
         [Display(Name = "Appartment")]
-        [StringLength(10, ErrorMessage = "Appartment cannot be longer than 10 characters.")]
+        [StringLength(10, MinimumLength=1, ErrorMessage = "Appartment cannot be longer than 10 characters.")]
         public string Appartment { get; set; }
         [Required]
         [Display(Name = "Phone")]
