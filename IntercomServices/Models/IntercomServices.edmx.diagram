@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ef09e044eb4440b78db3e737ea5eb0a0" Name="EntityDiagram" ZoomLevel="108" >
+      <Diagram DiagramId="ef09e044eb4440b78db3e737ea5eb0a0" Name="EntityDiagram" ZoomLevel="82" >
         <EntityTypeShape EntityType="iLexStudio.IntercomServices.BaseDictionary" Width="1.5" PointX="5.5" PointY="0.875" />
         <AssociationConnector Association="iLexStudio.IntercomServices.ParentEntry" />
-        <EntityTypeShape EntityType="iLexStudio.IntercomServices.Street" Width="1.5" PointX="6.5" PointY="3.875" />
+        <EntityTypeShape EntityType="iLexStudio.IntercomServices.Street" Width="1.5" PointX="6.625" PointY="4.75" />
         <InheritanceConnector EntityType="iLexStudio.IntercomServices.Street" />
-        <EntityTypeShape EntityType="iLexStudio.IntercomServices.TicketType" Width="1.5" PointX="4.5" PointY="4" />
+        <EntityTypeShape EntityType="iLexStudio.IntercomServices.TicketType" Width="1.5" PointX="0.5" PointY="5.25" />
         <InheritanceConnector EntityType="iLexStudio.IntercomServices.TicketType" />
         <InheritanceConnector EntityType="iLexStudio.IntercomServices.Street" />
         <InheritanceConnector EntityType="iLexStudio.IntercomServices.TicketType" />
         <EntityTypeShape EntityType="iLexStudio.IntercomServices.Address" Width="1.5" PointX="0.5" PointY="0.875" />
-        <EntityTypeShape EntityType="iLexStudio.IntercomServices.UserProfile" Width="1.5" PointX="1.4901798970485944" PointY="14.003969362938763" />
-        <EntityTypeShape EntityType="iLexStudio.IntercomServices.webpages_Membership" Width="1.5" PointX="6.375" PointY="13.125" />
-        <EntityTypeShape EntityType="iLexStudio.IntercomServices.webpages_OAuthMembership" Width="1.5" PointX="6.2260350148314778" PointY="25.86940240574507" />
-        <EntityTypeShape EntityType="iLexStudio.IntercomServices.webpages_Roles" Width="1.5" PointX="1.2443974731696759" PointY="17.882532575113014" />
+        <EntityTypeShape EntityType="iLexStudio.IntercomServices.UserProfile" Width="1.5" PointX="0.625" PointY="8.125" />
+        <EntityTypeShape EntityType="iLexStudio.IntercomServices.webpages_Membership" Width="1.5" PointX="5.5" PointY="7.25" />
+        <EntityTypeShape EntityType="iLexStudio.IntercomServices.webpages_OAuthMembership" Width="1.5" PointX="3" PointY="7.375" />
+        <EntityTypeShape EntityType="iLexStudio.IntercomServices.webpages_Roles" Width="1.5" PointX="0.625" PointY="12.25" />
         <AssociationConnector Association="iLexStudio.IntercomServices.webpages_UsersInRoles" />
         <EntityTypeShape EntityType="iLexStudio.IntercomServices.Ticket" Width="1.5" PointX="2.5" PointY="0.875" />
         <AssociationConnector Association="iLexStudio.IntercomServices.FK_Ticket_to_Adress" />

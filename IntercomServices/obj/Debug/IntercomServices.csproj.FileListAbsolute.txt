@@ -338,7 +338,6 @@ C:\Users\Elena\Documents\work\IntercomServices-Lucky-Dragon\IntercomServices\bin
 C:\Users\Elena\Documents\work\IntercomServices-Lucky-Dragon\IntercomServices\obj\Debug\iLexStudio.IntercomServices.dll
 C:\Users\Elena\Documents\work\IntercomServices-Lucky-Dragon\IntercomServices\obj\Debug\iLexStudio.IntercomServices.pdb
 C:\Users\Elena\Documents\work\IntercomServices-Lucky-Dragon\IntercomServices\obj\Debug\IntercomServices.csprojResolveAssemblyReference.cache
-C:\Users\Elena\Documents\work\Intercom\branches\Lucky-Dragon\IntercomServices\obj\Debug\iLexStudio.IntercomServices.dll
 C:\Users\Elena\Documents\work\Intercom\branches\Lucky-Dragon\IntercomServices\bin\iLexStudio.IntercomServices.dll
 C:\Users\Elena\Documents\work\Intercom\branches\Lucky-Dragon\IntercomServices\bin\iLexStudio.IntercomServices.pdb
 C:\Users\Elena\Documents\work\Intercom\branches\Lucky-Dragon\IntercomServices\bin\Antlr3.Runtime.dll
@@ -421,4 +420,5 @@ C:\Users\Elena\Documents\work\Intercom\branches\Lucky-Dragon\IntercomServices\bi
 C:\Users\Elena\Documents\work\Intercom\branches\Lucky-Dragon\IntercomServices\bin\ru\System.Spatial.resources.dll
 C:\Users\Elena\Documents\work\Intercom\branches\Lucky-Dragon\IntercomServices\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Elena\Documents\work\Intercom\branches\Lucky-Dragon\IntercomServices\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\Elena\Documents\work\Intercom\branches\Lucky-Dragon\IntercomServices\obj\Debug\iLexStudio.IntercomServices.dll
 C:\Users\Elena\Documents\work\Intercom\branches\Lucky-Dragon\IntercomServices\obj\Debug\iLexStudio.IntercomServices.pdb

@@ -193,22 +193,33 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AddressModels.cs" />
-    <Compile Include="Models\TicketModels.cs" />
-    <Compile Include="Models\IntercomContext.cs" />
-    <Compile Include="Models\IntercomServices.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>IntercomServices.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\IntercomServices.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
+    <Compile Include="Models\BaseDictionary.cs">
       <DependentUpon>IntercomServices.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Street.cs">
+      <DependentUpon>IntercomServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TicketModels.cs" />
+    <Compile Include="Models\IntercomContext.cs" />
     <Compile Include="Models\IntercomServices.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>IntercomServices.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TicketStatus.cs">
+      <DependentUpon>IntercomServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TicketType.cs">
+      <DependentUpon>IntercomServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_Membership.cs">
+      <DependentUpon>IntercomServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_OAuthMembership.cs">
+      <DependentUpon>IntercomServices.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_Roles.cs">
+      <DependentUpon>IntercomServices.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -301,6 +312,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\TicketsViewFunctions.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -372,7 +384,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>12910</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:49307/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
