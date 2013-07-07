@@ -21,7 +21,7 @@ namespace iLexStudio.IntercomServices.Models
         public string Phone { get; set; }
         public string Email { get; set; }
         public string StatusReason { get; set; }
-        public string StatusID{get; set;} 
+        public int StatusID{get; set;} 
         public string Assignee { get; set; }
              
     }

@@ -30,7 +30,7 @@ public enum TicketStatus : int
 
     Rejected = 16,
 
-    Closed = 3,
+    Closed = 32,
 
 }
 
